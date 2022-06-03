@@ -7,9 +7,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Persistence
 {
-    public class DataContext : DbContext
+    public class ReactivityDbContext : DbContext
     {
-        public DataContext(DbContextOptions options) : base(options)
+        public ReactivityDbContext(DbContextOptions options) : base(options)
         {
         }
 

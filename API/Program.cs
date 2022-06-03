@@ -24,7 +24,7 @@ namespace API
 
             try
             {
-                var context = services.GetRequiredService<DataContext>();
+                var context = services.GetRequiredService<ReactivityDbContext>();
                 await context.Database.MigrateAsync();
                 await Seed.SeedData(context);
             }

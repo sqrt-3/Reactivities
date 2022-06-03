@@ -11,9 +11,9 @@ namespace API.Controllers
 {
     public class ActivitiesController : BaseApiController
     {
-        private readonly DataContext _context;
+        private readonly ReactivityDbContext _context;
 
-        public ActivitiesController(DataContext context)
+        public ActivitiesController(ReactivityDbContext context)
         {
             _context = context;
         }
