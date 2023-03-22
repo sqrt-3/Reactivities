@@ -4,6 +4,7 @@ using AutoMapper;
 using Domain;
 using MediatR;
 using Persistence;
+using System;
 
 namespace Application.Activities
 {
@@ -17,23 +18,17 @@ namespace Application.Activities
         public class Handler : IRequestHandler<Command>
         {
             private readonly ReactivityDbContext _context;
-
             private readonly IMapper _mapper;
-
             public Handler(ReactivityDbContext context, IMapper mapper)
             {
                 _context = context;
                 _mapper = mapper;
             }
-
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
                 var activitiy = await _context.Activities.FindAsync(request.Activity.Id);
-
                 _mapper.Map(request.Activity, activitiy);
-
                 await _context.SaveChangesAsync();
-
                 return Unit.Value;
             }
         }
