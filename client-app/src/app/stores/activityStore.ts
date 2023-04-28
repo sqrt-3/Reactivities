@@ -17,6 +17,10 @@ export default class ActivityStore {
 		return Array.from(this.activityRegistry.values()).sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
 	}
 
+	get activityCount() {
+		return this.activityRegistry.size;
+	}
+
 	loadActivities = async () => {
 		this.setLoadingInitial(true);
 		try {
@@ -117,8 +121,6 @@ export default class ActivityStore {
 	};
 
 	private setLoadingInitial = (state: boolean) => {
-		runInAction(() => {
-			this.loadingInitial = state;
-		});
+		this.loadingInitial = state;
 	};
 }

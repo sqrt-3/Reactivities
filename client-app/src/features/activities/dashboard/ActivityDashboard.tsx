@@ -7,7 +7,7 @@ import ActivityList from './ActivityList';
 
 const ActivityDashboard = () => {
 	const { activityStore } = useStore();
-	const { loadActivities, activityRegistry, loadingInitial } = activityStore;
+	const { loadActivities, activityRegistry, loadingInitial, activityCount } = activityStore;
 
 	useEffect(() => {
 		if (activityRegistry.size <= 1) loadActivities();
@@ -22,6 +22,7 @@ const ActivityDashboard = () => {
 			</Grid.Column>
 			<Grid.Column width='6'>
 				<h2>Activity filters</h2>
+				<h2>{activityCount}</h2>
 			</Grid.Column>
 		</Grid>
 	);
