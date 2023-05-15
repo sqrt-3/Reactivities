@@ -17,8 +17,21 @@ export default class ActivityStore {
 		return Array.from(this.activityRegistry.values()).sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
 	}
 
-	get activityCount() {
-		return this.activityRegistry.size;
+	get groupedActivities() {
+		return Object.entries(
+			this.activitiesByDate.reduce((activities, activity) => {
+				const date = activity.date;
+
+				// if (activities[date]) {
+				// 	activities[date].push(activity);
+				// } else {
+				// 	activities[date] = [activity];
+				// }
+
+				activities[date] = activities[date] ? [...activities[date], activity] : [activity];
+				return activities;
+			}, {} as { [key: string]: Activity[] })
+		);
 	}
 
 	loadActivities = async () => {
