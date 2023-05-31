@@ -5,40 +5,39 @@ using FluentValidation;
 using MediatR;
 using Persistence;
 
-namespace Application.Activities
+namespace Application.Activities;
+
+public class Create
 {
-    public class Create
+    public class Command : IRequest
     {
-        public class Command : IRequest
+        public Activity Activity { get; set; }
+    }
+
+    public class CommandValidator : AbstractValidator<Command>
+    {
+        public CommandValidator()
         {
-            public Activity Activity { get; set; }
+            RuleFor(x => x.Activity).SetValidator(new ActivityValidator());
+        }
+    }
+
+    public class Handler : IRequestHandler<Command>
+    {
+        private readonly ReactivityDbContext _context;
+
+        public Handler(ReactivityDbContext context)
+        {
+            _context = context;
         }
 
-        public class CommandValidator : AbstractValidator<Command>
+        public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
         {
-            public CommandValidator()
-            {
-                RuleFor(x => x.Activity).SetValidator(new ActivityValidator());
-            }
-        }
+            _context.Activities.Add(request.Activity);
 
-        public class Handler : IRequestHandler<Command>
-        {
-            private readonly ReactivityDbContext _context;
+            await _context.SaveChangesAsync();
 
-            public Handler(ReactivityDbContext context)
-            {
-                _context = context;
-            }
-
-            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
-            {
-                _context.Activities.Add(request.Activity);
-
-                await _context.SaveChangesAsync();
-
-                return Unit.Value;
-            }
+            return Unit.Value;
         }
     }
 }

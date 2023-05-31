@@ -6,29 +6,28 @@ using Domain;
 using MediatR;
 using Persistence;
 
-namespace Application.Activities
+namespace Application.Activities;
+
+public class Details
 {
-    public class Details
+    public class Query : IRequest<Result<Activity>>
     {
-        public class Query : IRequest<Result<Activity>>
+        public Guid Id { get; set; }
+    }
+
+    public class Handler : IRequestHandler<Query, Result<Activity>>
+    {
+        private readonly ReactivityDbContext _context;
+
+        public Handler(ReactivityDbContext context)
         {
-            public Guid Id { get; set; }
+            _context = context;
         }
 
-        public class Handler : IRequestHandler<Query, Result<Activity>>
+        public async Task<Result<Activity>> Handle(Query request, CancellationToken cancellationToken)
         {
-            private readonly ReactivityDbContext _context;
-
-            public Handler(ReactivityDbContext context)
-            {
-                _context = context;
-            }
-
-            public async Task<Result<Activity>> Handle(Query request, CancellationToken cancellationToken)
-            {
-                var activity = await _context.Activities.FindAsync(request.Id);
-                return Result<Activity>.Success(activity);
-            }
+            var activity = await _context.Activities.FindAsync(request.Id);
+            return Result<Activity>.Success(activity);
         }
     }
 }
