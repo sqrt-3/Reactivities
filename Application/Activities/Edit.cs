@@ -5,12 +5,13 @@ using Domain;
 using MediatR;
 using Persistence;
 using FluentValidation;
+using Application.Core;
 
 namespace Application.Activities;
 
 public class Edit
 {
-    public class Command : IRequest
+    public class Command : IRequest<Result<Unit>>
     {
         public Activity Activity { get; set; }
     }
@@ -23,10 +24,9 @@ public class Edit
         }
     }
 
-    public class Handler : IRequestHandler<Command>
+    public class Handler : IRequestHandler<Command, Result<Unit>>
     {
         private readonly ReactivityDbContext _context;
-
         private readonly IMapper _mapper;
 
         public Handler(ReactivityDbContext context, IMapper mapper)
@@ -35,12 +35,14 @@ public class Edit
             _mapper = mapper;
         }
 
-        public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+        public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
         {
             var activitiy = await _context.Activities.FindAsync(request.Activity.Id);
+            if (activitiy == null) return null;
             _mapper.Map(request.Activity, activitiy);
-            await _context.SaveChangesAsync();
-            return Unit.Value;
+            var result = await _context.SaveChangesAsync() > 0;
+            if (!result) return Result<Unit>.Failure("Failed to update activity");
+            return Result<Unit>.Success(Unit.Value);
         }
     }
 }

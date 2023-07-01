@@ -9,6 +9,7 @@ using Persistence;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Domain;
+using API.Middleware;
 
 namespace API.Extensions
 {
