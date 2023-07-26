@@ -44,12 +44,9 @@ const ActivityForm = () => {
 	}, [id, loadActivity]);
 
 	const handleFormSubmit = (activity: Activity) => {
-		if (activity.id.length === 0) {
-			let newActivity = {
-				...activity,
-				id: uuid(),
-			};
-			createActivity(newActivity).then(() => navigate(`/activities/${newActivity.id}`));
+		if (!activity.id) {
+			activity.id = uuid();
+			createActivity(activity).then(() => navigate(`/activities/${activity.id}`));
 		} else {
 			updateActivity(activity).then(() => navigate(`/activities/${activity.id}`));
 		}
