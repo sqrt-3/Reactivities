@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence;
 
@@ -10,9 +11,10 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(ReactivityDbContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20231116193212_ActivityAttendee")]
+    partial class ActivityAttendee
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.5");
@@ -34,9 +36,6 @@ namespace Persistence.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsCancelled")
-                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")
                         .HasColumnType("TEXT");
@@ -64,7 +63,7 @@ namespace Persistence.Migrations
 
                     b.HasIndex("ActivityId");
 
-                    b.ToTable("ActivityAttendees");
+                    b.ToTable("Activity");
                 });
 
             modelBuilder.Entity("Domain.AppUser", b =>

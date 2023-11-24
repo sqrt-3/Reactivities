@@ -8,36 +8,37 @@ using Microsoft.OpenApi.Models;
 using Persistence;
 using FluentValidation;
 using FluentValidation.AspNetCore;
-using Domain;
-using API.Middleware;
+using Application.Interfaces;
+using Infrastructure.Security;
 
-namespace API.Extensions
+namespace API.Extensions;
+
+public static class ApplicationServiceExtensions
 {
-    public static class ApplicationServiceExtensions
+    public static IServiceCollection AddApplicationService(this IServiceCollection services, IConfiguration config)
     {
-        public static IServiceCollection AddApplicationService(this IServiceCollection services, IConfiguration config)
+        services.AddSwaggerGen(c =>
         {
-            services.AddSwaggerGen(c =>
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPIv5", Version = "v1" });
+        });
+        services.AddDbContext<ReactivityDbContext>(opt =>
+        {
+            opt.UseSqlite(config.GetConnectionString("DefaultConnection"));
+        });
+        services.AddCors(opt =>
+        {
+            opt.AddPolicy("CorsPolicy", policy =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPIv5", Version = "v1" });
+                policy.AllowAnyMethod().AllowAnyHeader().WithOrigins("http://localhost:3000");
             });
-            services.AddDbContext<ReactivityDbContext>(opt =>
-            {
-                opt.UseSqlite(config.GetConnectionString("DefaultConnection"));
-            });
-            services.AddCors(opt =>
-            {
-                opt.AddPolicy("CorsPolicy", policy =>
-                {
-                    policy.AllowAnyMethod().AllowAnyHeader().WithOrigins("http://localhost:3000");
-                });
-            });
-            services.AddMediatR(typeof(List.Query).Assembly);
-            services.AddAutoMapper(typeof(MappingProfiles).Assembly);
-            services.AddFluentValidationAutoValidation();
-            services.AddValidatorsFromAssemblyContaining<Create>();
+        });
+        services.AddMediatR(typeof(List.Query).Assembly);
+        services.AddAutoMapper(typeof(MappingProfiles).Assembly);
+        services.AddFluentValidationAutoValidation();
+        services.AddValidatorsFromAssemblyContaining<Create>();
+        services.AddHttpContextAccessor();
+        services.AddScoped<IUserAccessor, UserAccessor>();
 
-            return services;
-        }
+        return services;
     }
 }

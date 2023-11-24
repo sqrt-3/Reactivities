@@ -4,9 +4,9 @@ public class AppException
 {
     public AppException(int statusCode, string message, string details = null)
     {
-        this.StatusCode = statusCode;
-        this.Message = message;
-        this.Details = details;
+        StatusCode = statusCode;
+        Message = message;
+        Details = details;
     }
 
     public int StatusCode { get; set; }

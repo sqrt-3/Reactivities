@@ -72,7 +72,6 @@ public class AccountController : ControllerBase
         return BadRequest("Problem registering user");
     }
 
-    [Authorize]
     [HttpGet]
     public async Task<ActionResult<UserDto>> GetCurrentUser()
     {
