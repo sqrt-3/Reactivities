@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 using Application.Core;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
@@ -30,7 +27,7 @@ public class List
         {
             var activities = await _context.Activities
                 .ProjectTo<ActivityDto>(_mapper.ConfigurationProvider)
-                .ToListAsync(cancellationToken);
+                .ToListAsync();
 
             return Result<List<ActivityDto>>.Success(activities);
         }
