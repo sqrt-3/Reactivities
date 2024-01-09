@@ -47,14 +47,14 @@ public class Seed
                         Category = "drinks",
                         City = "London",
                         Venue = "Pub",
-                        Attendees = new List<ActivityAttendee>
-                        {
-                            new ActivityAttendee
-                            {
-                                AppUser = users[0],
-                                IsHost = true
-                            }
-                        }
+                        // Attendees = new List<ActivityAttendee>
+                        // {
+                        //     new ActivityAttendee
+                        //     {
+                        //         AppUser = users[0],
+                        //         IsHost = true
+                        //     }
+                        // }
                     },
                     new Activity
                     {
@@ -64,19 +64,19 @@ public class Seed
                         Category = "culture",
                         City = "Paris",
                         Venue = "The Louvre",
-                        Attendees = new List<ActivityAttendee>
-                        {
-                            new ActivityAttendee
-                            {
-                                AppUser = users[0],
-                                IsHost = true
-                            },
-                            new ActivityAttendee
-                            {
-                                AppUser = users[1],
-                                IsHost = false
-                            },
-                        }
+                        // Attendees = new List<ActivityAttendee>
+                        // {
+                        //     new ActivityAttendee
+                        //     {
+                        //         AppUser = users[0],
+                        //         IsHost = true
+                        //     },
+                        //     new ActivityAttendee
+                        //     {
+                        //         AppUser = users[1],
+                        //         IsHost = false
+                        //     },
+                        // }
                     },
                     new Activity
                     {
@@ -86,19 +86,19 @@ public class Seed
                         Category = "music",
                         City = "London",
                         Venue = "Wembly Stadium",
-                        Attendees = new List<ActivityAttendee>
-                        {
-                            new ActivityAttendee
-                            {
-                                AppUser = users[2],
-                                IsHost = true
-                            },
-                            new ActivityAttendee
-                            {
-                                AppUser = users[1],
-                                IsHost = false
-                            },
-                        }
+                        // Attendees = new List<ActivityAttendee>
+                        // {
+                        //     new ActivityAttendee
+                        //     {
+                        //         AppUser = users[2],
+                        //         IsHost = true
+                        //     },
+                        //     new ActivityAttendee
+                        //     {
+                        //         AppUser = users[1],
+                        //         IsHost = false
+                        //     },
+                        // }
                     },
                     new Activity
                     {
@@ -108,19 +108,19 @@ public class Seed
                         Category = "food",
                         City = "London",
                         Venue = "Jamies Italian",
-                        Attendees = new List<ActivityAttendee>
-                        {
-                            new ActivityAttendee
-                            {
-                                AppUser = users[0],
-                                IsHost = true
-                            },
-                            new ActivityAttendee
-                            {
-                                AppUser = users[2],
-                                IsHost = false
-                            },
-                        }
+                        // Attendees = new List<ActivityAttendee>
+                        // {
+                        //     new ActivityAttendee
+                        //     {
+                        //         AppUser = users[0],
+                        //         IsHost = true
+                        //     },
+                        //     new ActivityAttendee
+                        //     {
+                        //         AppUser = users[2],
+                        //         IsHost = false
+                        //     },
+                        // }
                     },
                     new Activity
                     {
@@ -130,19 +130,19 @@ public class Seed
                         Category = "drinks",
                         City = "London",
                         Venue = "Pub",
-                        Attendees = new List<ActivityAttendee>
-                        {
-                            new ActivityAttendee
-                            {
-                                AppUser = users[1],
-                                IsHost = true
-                            },
-                            new ActivityAttendee
-                            {
-                                AppUser = users[0],
-                                IsHost = false
-                            },
-                        }
+                        // Attendees = new List<ActivityAttendee>
+                        // {
+                        //     new ActivityAttendee
+                        //     {
+                        //         AppUser = users[1],
+                        //         IsHost = true
+                        //     },
+                        //     new ActivityAttendee
+                        //     {
+                        //         AppUser = users[0],
+                        //         IsHost = false
+                        //     },
+                        // }
                     },
                     new Activity
                     {
@@ -152,14 +152,14 @@ public class Seed
                         Category = "culture",
                         City = "London",
                         Venue = "British Museum",
-                        Attendees = new List<ActivityAttendee>
-                        {
-                            new ActivityAttendee
-                            {
-                                AppUser = users[1],
-                                IsHost = true
-                            }
-                        }
+                        // Attendees = new List<ActivityAttendee>
+                        // {
+                        //     new ActivityAttendee
+                        //     {
+                        //         AppUser = users[1],
+                        //         IsHost = true
+                        //     }
+                        // }
                     },
                     new Activity
                     {
@@ -169,19 +169,19 @@ public class Seed
                         Category = "drinks",
                         City = "London",
                         Venue = "Punch and Judy",
-                        Attendees = new List<ActivityAttendee>
-                        {
-                            new ActivityAttendee
-                            {
-                                AppUser = users[0],
-                                IsHost = true
-                            },
-                            new ActivityAttendee
-                            {
-                                AppUser = users[1],
-                                IsHost = false
-                            },
-                        }
+                        // Attendees = new List<ActivityAttendee>
+                        // {
+                        //     new ActivityAttendee
+                        //     {
+                        //         AppUser = users[0],
+                        //         IsHost = true
+                        //     },
+                        //     new ActivityAttendee
+                        //     {
+                        //         AppUser = users[1],
+                        //         IsHost = false
+                        //     },
+                        // }
                     },
                     new Activity
                     {
@@ -191,19 +191,19 @@ public class Seed
                         Category = "music",
                         City = "London",
                         Venue = "O2 Arena",
-                        Attendees = new List<ActivityAttendee>
-                        {
-                            new ActivityAttendee
-                            {
-                                AppUser = users[2],
-                                IsHost = true
-                            },
-                            new ActivityAttendee
-                            {
-                                AppUser = users[1],
-                                IsHost = false
-                            },
-                        }
+                        // Attendees = new List<ActivityAttendee>
+                        // {
+                        //     new ActivityAttendee
+                        //     {
+                        //         AppUser = users[2],
+                        //         IsHost = true
+                        //     },
+                        //     new ActivityAttendee
+                        //     {
+                        //         AppUser = users[1],
+                        //         IsHost = false
+                        //     },
+                        // }
                     },
                     new Activity
                     {
@@ -213,19 +213,19 @@ public class Seed
                         Category = "travel",
                         City = "Berlin",
                         Venue = "All",
-                        Attendees = new List<ActivityAttendee>
-                        {
-                            new ActivityAttendee
-                            {
-                                AppUser = users[0],
-                                IsHost = true
-                            },
-                            new ActivityAttendee
-                            {
-                                AppUser = users[2],
-                                IsHost = false
-                            },
-                        }
+                        // Attendees = new List<ActivityAttendee>
+                        // {
+                        //     new ActivityAttendee
+                        //     {
+                        //         AppUser = users[0],
+                        //         IsHost = true
+                        //     },
+                        //     new ActivityAttendee
+                        //     {
+                        //         AppUser = users[2],
+                        //         IsHost = false
+                        //     },
+                        // }
                     },
                     new Activity
                     {
@@ -235,19 +235,19 @@ public class Seed
                         Category = "drinks",
                         City = "London",
                         Venue = "Pub",
-                        Attendees = new List<ActivityAttendee>
-                        {
-                            new ActivityAttendee
-                            {
-                                AppUser = users[2],
-                                IsHost = true
-                            },
-                            new ActivityAttendee
-                            {
-                                AppUser = users[1],
-                                IsHost = false
-                            },
-                        }
+                        // Attendees = new List<ActivityAttendee>
+                        // {
+                        //     new ActivityAttendee
+                        //     {
+                        //         AppUser = users[2],
+                        //         IsHost = true
+                        //     },
+                        //     new ActivityAttendee
+                        //     {
+                        //         AppUser = users[1],
+                        //         IsHost = false
+                        //     },
+                        // }
                     }
                 };
 

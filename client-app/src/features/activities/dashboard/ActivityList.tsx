@@ -1,17 +1,23 @@
 import { Button, Item, Label, Segment } from 'semantic-ui-react';
-import { Activity } from '../../../app/models/activity';
+import { SyntheticEvent, useState } from 'react';
+import { useStore } from '../../../app/stores/store';
+import { observer } from 'mobx-react-lite';
+import { Link } from 'react-router-dom';
 
-interface Props {
-	activities: Activity[];
-	selectActivity: (id: string) => void;
-    deleteActivity: (id: string) => void;
-}
+const ActivityList = () => {
+	const { activityStore } = useStore();
+	const { activitiesByDate, loading, deleteActivity } = activityStore;
+	const [target, setTarget] = useState('');
 
-const ActivityList = ({ activities, selectActivity, deleteActivity }: Props) => {
+	const handleActivityDelete = (e: SyntheticEvent<HTMLButtonElement>, id: string) => {
+		setTarget(e.currentTarget.name);
+		deleteActivity(id);
+	};
+
 	return (
 		<Segment>
 			<Item.Group divided>
-				{activities.map((activity) => (
+				{activitiesByDate.map((activity) => (
 					<Item key={activity.id}>
 						<Item.Content>
 							<Item.Header as='a'>{activity.title}</Item.Header>
@@ -23,8 +29,8 @@ const ActivityList = ({ activities, selectActivity, deleteActivity }: Props) => 
 								</div>
 							</Item.Description>
 							<Item.Extra>
-								<Button onClick={() => selectActivity(activity.id)} floated='right' content='View' color='blue' />
-                                <Button onClick={() => deleteActivity(activity.id)} floated='right' content='Delete' color='red' />
+								<Button as={Link} to={`/activities/${activity.id}`} floated='right' content='View' color='blue' />
+								<Button name={activity.id} loading={loading && target === activity.id} onClick={(e) => handleActivityDelete(e, activity.id)} floated='right' content='Delete' color='red' />
 								<Label basic content={activity.category}></Label>
 							</Item.Extra>
 						</Item.Content>
@@ -35,4 +41,4 @@ const ActivityList = ({ activities, selectActivity, deleteActivity }: Props) => 
 	);
 };
 
-export default ActivityList;
+export default observer(ActivityList);

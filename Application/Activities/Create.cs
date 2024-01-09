@@ -45,7 +45,7 @@ public class Create
                 IsHost = true
             };
 
-            request.Activity.Attendees.Add(attendee);
+            //request.Activity.Attendees.Add(attendee);
 
             _context.Activities.Add(request.Activity);
 

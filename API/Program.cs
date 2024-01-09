@@ -12,11 +12,11 @@ var builder = WebApplication.CreateBuilder(args);
 //add service to container
 builder.Services.AddControllers(opt =>
 {
-    var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-    opt.Filters.Add(new AuthorizeFilter(policy));
+    // var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+    // opt.Filters.Add(new AuthorizeFilter(policy));
 });
 builder.Services.AddApplicationService(builder.Configuration);
-builder.Services.AddIdentityServices(builder.Configuration);
+// builder.Services.AddIdentityServices(builder.Configuration);
 
 // configure the http request pipeline
 var app = builder.Build();
@@ -29,8 +29,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors("CorsPolicy");
-app.UseAuthentication();
-app.UseAuthorization();
+// app.UseAuthentication();
+// app.UseAuthorization();
 app.MapControllers();
 
 using var scope = app.Services.CreateScope();
