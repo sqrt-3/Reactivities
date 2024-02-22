@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Domain;
 using Microsoft.IdentityModel.Tokens;
-using System.Security.Cryptography;
 using System.Text;
-using Microsoft.Extensions.Configuration;
 
 namespace API.Services;
 
@@ -28,8 +24,7 @@ public class TokenService
             new Claim(ClaimTypes.Email, user.Email),
         };
 
-        string longerString = _config["TokenKey"];
-        byte[] largerUtf8Bytes = Encoding.UTF8.GetBytes(longerString);
+        byte[] largerUtf8Bytes = Encoding.UTF8.GetBytes(_config["TokenKey"]);
 
 
         var key = new SymmetricSecurityKey(largerUtf8Bytes);

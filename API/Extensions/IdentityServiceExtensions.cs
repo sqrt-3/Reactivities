@@ -4,8 +4,6 @@ using Domain;
 using Infrastructure.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Persistence;
 
@@ -15,8 +13,7 @@ public static class IdentityServiceExtensions
 {
     public static IServiceCollection AddIdentityServices(this IServiceCollection services, IConfiguration config)
     {
-        string longerString = config["TokenKey"];
-        byte[] largerUtf8Bytes = Encoding.UTF8.GetBytes(longerString);
+        byte[] key = Encoding.UTF8.GetBytes(config["TokenKey"]);
 
         services.AddIdentityCore<AppUser>(opt =>
         {
@@ -29,7 +26,7 @@ public static class IdentityServiceExtensions
             opt.TokenValidationParameters = new TokenValidationParameters
             {
                 ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(largerUtf8Bytes),
+                IssuerSigningKey = new SymmetricSecurityKey(key),
                 ValidateIssuer = false,
                 ValidateAudience = false,
             };
@@ -38,7 +35,7 @@ public static class IdentityServiceExtensions
         {
             option.AddPolicy("IsActivityHost", policy => policy.Requirements.Add(new IsHostRequirement()));
         });
-        services.AddTransient<IAuthorizationHandler,IsHostRequirementHandler>();
+        services.AddTransient<IAuthorizationHandler, IsHostRequirementHandler>();
         services.AddScoped<TokenService>();
 
         return services;
